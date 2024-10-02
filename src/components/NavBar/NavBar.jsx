@@ -6,8 +6,8 @@ function NavBar() {
       <div className="flex items-center px-6 py-3">
         <Link to="/">
           <img
-            src="https://2020.hackillinois.org/static/media/logo.01347610.svg"
-            alt="HackIllinois Logo"
+            src="https://brand.illinois.edu/wp-content/uploads/2024/02/Illinois_formal_wordmark_fullcolor_rgb-1-1.png"
+            alt="Logo"
             className="h-8 w-auto mr-4"
           />
         </Link>
@@ -17,10 +17,10 @@ function NavBar() {
             <Link to="/" className="text-gray-700 hover:text-gray-900 transition-colors duration-200">Home</Link>
           </li>
           <li>
-            <a href="https://blog.hackillinois.org/about/" className="text-gray-700 hover:text-gray-900 transition-colors duration-200" target="_blank" rel="noopener noreferrer">About</a>
+            <a href="https://illinois.edu/about/index.html" className="text-gray-700 hover:text-gray-900 transition-colors duration-200" target="_blank" rel="noopener noreferrer">About</a>
           </li>
           <li>
-            <a href="mailto:contact@hackillinois.org" className="text-gray-700 hover:text-gray-900 transition-colors duration-200">Contact</a>
+            <a href="mailto:banghao2@illinois.edu" className="text-gray-700 hover:text-gray-900 transition-colors duration-200">Contact</a>
           </li>
         </ul>
       </div>
