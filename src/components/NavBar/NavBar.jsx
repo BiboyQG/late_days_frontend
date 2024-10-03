@@ -1,33 +1,7 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useEffect, useState } from 'react';
-import { useNavigate } from "react-router";
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { app } from "../../utils/firebase";
 
-function NavBar() {
-
-  const navigate = useNavigate();
-  const [user, setUser] = useState(false);
-
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(getAuth(app), (user) => {
-      console.log(user);
-      if (!user) {
-        navigate("/");
-      }
-      setUser(!!user);
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, [user, setUser, navigate]);
-
-  function handleClick() {
-    const auth = getAuth(app);
-    auth.signOut();
-  }
-  console.log(user);
+function NavBar({ user, handleClick }) {
 
   return (
     <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-50 backdrop-blur-md rounded-full shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl z-50">
@@ -60,5 +34,10 @@ function NavBar() {
     </nav>
   );
 }
+
+NavBar.propTypes = {
+  user: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired,
+};
 
 export default NavBar;
