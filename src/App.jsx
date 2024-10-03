@@ -1,10 +1,12 @@
-import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css'
+import { useState } from 'react';
 import DisplayBox from './components/DisplayBox/DisplayBox';
 import InputBox from './components/InputBox/InputBox';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
+import Login from './components/Login/Login';
+
 function App() {
   const [netid, setNetid] = useState('');
   const [lateDays, setLateDays] = useState(null);
@@ -15,7 +17,7 @@ function App() {
         <NavBar />
         <div className="py-8 mt-16 flex-grow">
           <Routes>
-            <Route path="/" element={
+            <Route path="/home" element={
               <div className="flex">
                 <div className="w-[25%] pr-4">
                   <InputBox netid={netid} setNetid={setNetid} setLateDays={setLateDays} />
@@ -25,6 +27,7 @@ function App() {
                 </div>
               </div>
             } />
+            <Route path="/" element={<Login />} />
           </Routes>
         </div>
         <Footer />

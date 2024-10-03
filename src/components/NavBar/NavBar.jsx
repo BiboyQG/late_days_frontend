@@ -1,6 +1,34 @@
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router";
 import { Link } from 'react-router-dom';
+import { app } from "../../utils/firebase";
 
 function NavBar() {
+
+  const navigate = useNavigate();
+  const [user, setUser] = useState(false);
+
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(getAuth(app), (user) => {
+      console.log(user);
+      if (!user) {
+        navigate("/");
+      }
+      setUser(!!user);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [user, setUser, navigate]);
+
+  function handleClick() {
+    const auth = getAuth(app);
+    auth.signOut();
+  }
+  console.log(user);
+
   return (
     <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-50 backdrop-blur-md rounded-full shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl z-50">
       <div className="flex items-center px-6 py-3">
@@ -22,6 +50,11 @@ function NavBar() {
           <li>
             <a href="mailto:banghao2@illinois.edu" className="text-gray-700 hover:text-gray-900 transition-colors duration-200">Contact</a>
           </li>
+          {user && (
+            <li>
+              <button onClick={handleClick} className="text-gray-700 hover:text-gray-900 transition-colors duration-200">Logout</button>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
