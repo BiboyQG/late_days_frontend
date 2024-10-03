@@ -8,10 +8,12 @@ const notifyFetchFailure = (err) => toast.error("Error while fetching events dat
 export function fetchLateDays(netid) {
   return axios.get(`/late-days/${netid}`)
     .then(({ data }) => {
-      console.log(data);
+      notifyFetchSuccess();
       return data;
     })
     .catch(error => {
+      const errorMessage = error.response.data.error;
+      notifyFetchFailure(errorMessage);
       throw error;
     });
 }
